@@ -14,7 +14,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginTop="16dp"
-        android:text="Hello World!"
+        android:text="Hello Math!"
         app:layout_constraintBottom_toTopOf="@+id/mathview"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
