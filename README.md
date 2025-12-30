@@ -17,35 +17,35 @@ cd HelloAndroidMath
 Installation for Android Studio
 ----------------------------------
 
-Open and run the project in Android Studio 
+Open and run the project in Android Studio
 
 
 Using in your app
 -------------------------
 
 
-Add below lines to root's build.gradle
+Add below lines to settings.gradle
 
 ```groovy
-	allprojects {
-		repositories {
-			...
-			maven { url 'https://jitpack.io' }
-		}
-	}
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
 ```
 
-Add below lines to apps's build.gradle
+Add below lines to app's build.gradle
 
 ```groovy
 dependencies {
-	        implementation 'com.github.gregcockroft:AndroidMath:-TESTA'
-	}
-	
+    implementation 'com.github.gregcockroft:AndroidMath:v1.1.0'
+}
 ```
 
 ```xml
-<ConstraintLayout ...>
+<androidx.constraintlayout.widget.ConstraintLayout ...>
 
     <TextView
         android:id="@+id/description"
@@ -56,7 +56,7 @@ dependencies {
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-      
+
     <com.agog.mathdisplay.MTMathView
         android:id="@+id/mathview"
         android:layout_width="wrap_content"
@@ -67,22 +67,25 @@ dependencies {
         app:layout_constraintTop_toBottomOf="@id/description" />
 
 
-</ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
 ```kotlin
+class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        mathview.latex = "x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}"
+        binding.mathview.latex = "x = \\frac{-b \\pm \\sqrt{b^2-4ac}}{2a}"
     }
-	
+}
 ```
 
-  
+
 ## License
 
 HelloAndroidMath is available under the MIT license. See the [LICENSE](./LICENSE)
 file for more info.
-
